@@ -1,0 +1,24 @@
+// --- GESTION DES FICHIERS ---
+
+void saveData() {
+    FILE *fUsers = fopen("users.txt", "w");
+    if (fUsers) {
+        for (int i = 0; i < userCount; i++) {
+            fprintf(fUsers, "%s %s %s\n", users[i].login, users[i].password, users[i].role);
+        }
+        fclose(fUsers);
+    }
+
+    FILE *fBooks = fopen("books3.txt", "w");
+    if (fBooks) {
+        for (int i = 0; i < bookCount; i++) {
+            fprintf(fBooks, "%d; %s; %s; %s; %d ; %d; %d; %d %d; %d; %d\n",
+                    library[i].id, library[i].title, library[i].author, library[i].category,
+                    library[i].isBorrowed,
+                    (strlen(library[i].borrowerLogin) > 0) ? library[i].borrowerLogin : "none",
+                    library[i].dueDate.day, library[i].dueDate.month, library[i].dueDate.year,
+                    library[i].dueDate.hour, library[i].dueDate.minute);
+        }
+        fclose(fBooks);
+    }
+}
