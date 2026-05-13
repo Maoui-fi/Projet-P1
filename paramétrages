@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#define MAX_BOOKS 100
+#define MAX_USERS 50
+#define MAX_STR 50
+
+// --- STRUCTURES ---
+
+typedef struct {
+    int day;
+    int month;
+    int year;
+    int hour;
+    int minute;
+} Date;
+
+typedef struct {
+    int id;
+    char title[MAX_STR];
+    char author[MAX_STR];
+    char category[MAX_STR];
+    int isBorrowed;          // 0: Non, 1: Oui
+    char borrowerLogin[MAX_STR];
+    Date dueDate;
+} Book;
+
+typedef struct {
+    char login[MAX_STR];
+    char password[MAX_STR];
+    char role[MAX_STR];      // "student" ou "professor"
+} User;
+
+// --- VARIABLES GLOBALES ---
+
+Book library[MAX_BOOKS];
+int bookCount = 0;
+User users[MAX_USERS];
+int userCount = 0;
+User *currentUser = NULL;
