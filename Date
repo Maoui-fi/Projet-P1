@@ -3,6 +3,12 @@
 Date getCurrentDate() {
     time_t t = time(NULL);
     struct tm *info = localtime(&t);
+
+if (info == NULL) {
+    fprintf(stderr, "Erreur : impossible de recuperer la date.\n");
+    exit(EXIT_FAILURE);
+}
+
     Date d;
     d.day = info->tm_mday;
     d.month = info->tm_mon + 1;
