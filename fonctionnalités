@@ -1,6 +1,10 @@
 
 void createAccount() {
-    if (userCount >= MAX_USERS) return;
+
+ if (userCount >= MAX_USERS) {
+        printf("Nombre maximal d'utilisateurs atteint.\n");
+        return;
+    }
 
     int roleChoice;
 
@@ -127,7 +131,11 @@ void addBook() {
         printf("Accès refusé : réservé aux professeurs.\n");
         return;
     }
-    if (bookCount >= MAX_BOOKS) return;
+
+   if (bookCount >= MAX_BOOKS) {
+        printf("Bibliotheque pleine.\n");
+        return;
+    }
 
     printf("Titre (utilisez_des_underscores) : "); scanf("%s", library[bookCount].title);
     printf("Auteur : "); scanf("%s", library[bookCount].author);
