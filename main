@@ -1,0 +1,53 @@
+int main() {
+    loadData();
+
+    // Admin par défaut si les fichiers sont vides
+    if (userCount == 0) {
+        strcpy(users[0].login, "admin");
+        strcpy(users[0].password, "123");
+        strcpy(users[0].role, "professor");
+        userCount = 1;
+    }
+
+    int choice;
+    while (1) {
+        if (!currentUser) {
+            printf("\n--- ACCUEIL ---\n1. Connexion\n2. Créer un compte\n3. Quitter\nChoix : ");
+            if (scanf("%d", &choice) != 1) break;
+            if (choice == 1) {
+                if (!loginUser()) printf("Échec de la connexion.\n");
+            }
+            else if (choice == 2) createAccount();
+            else break;
+        } else {
+           printf("\n--- MENU (%s - %s) ---\n", currentUser->login, currentUser->role);
+
+printf("1. Rechercher/Voir livres\n");
+printf("2. Emprunter un livre\n");
+
+if (strcmp(currentUser->role, "professor") == 0) {
+    printf("3. Ajouter un livre\n");
+}
+
+printf("4. Déconnexion\nChoix : ");
+            if (scanf("%d", &choice) != 1) break;
+           if (choice == 1) {
+    searchBooks();
+}
+else if (choice == 2) {
+    borrowBook();
+}
+else if (choice == 3 && strcmp(currentUser->role, "professor") == 0) {
+    addBook();
+}
+else if (choice == 4) {
+    currentUser = NULL;
+}
+else {
+    printf("Choix invalide.\n");
+}
+        }
+    }
+    return 0;
+}
+
